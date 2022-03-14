@@ -3,7 +3,7 @@
 		<li v-for="staff in refinedStaffArr" :key="staff">
 			<div class="list-item-container">
 				<p>{{ staff }}</p>
-				<i class="fa fa-trash-o"></i>
+				<i class="fa fa-trash-o" @click="$emit('handle-delete', staff)"></i>
 			</div>
 		</li>
 	</ul>
@@ -16,9 +16,9 @@ export default {
 		staffNames: Array,
 	},
 	computed: {
-		//to isolate names array and remove the first empty string in the names array
+		//to remove the first empty string in the names array
 		refinedStaffArr() {
-			return this.staffNames[0].data.slice(1);
+			return this.staffNames.slice(1);
 		},
 	},
 };
@@ -47,5 +47,8 @@ li:after {
 i {
 	color: #e76f51;
 	margin-left: 20px;
+}
+i:hover {
+	cursor: pointer;
 }
 </style>

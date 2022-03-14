@@ -1,19 +1,19 @@
 <template>
 	<form action="">
-		<SearchBar />
-		<Button text="Add" />
+		<search-bar />
+		<card-button text="Add" />
 	</form>
 </template>
 
 <script>
 import SearchBar from "./SearchBar.vue";
-import Button from "./Button.vue";
+import CardButton from "./CardButton.vue";
 
 export default {
 	name: "AddGuard",
 	components: {
 		SearchBar,
-		Button,
+		CardButton,
 	},
 };
 </script>

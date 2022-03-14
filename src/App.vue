@@ -1,14 +1,34 @@
 <template>
 	<div class="container-center">
-		<CardHeader />
+		<div class="card">
+			<card-header />
+			<card-body :staffNames="staffNames" />
+		</div>
 	</div>
 </template>
 
 <script>
 import CardHeader from "./components/CardHeader.vue";
+import CardBody from "./components/CardBody.vue";
+
 export default {
 	name: "App",
-	components: { CardHeader },
+	components: { CardHeader, CardBody },
+	data() {
+		return {
+			staffNames: [],
+		};
+	},
+	methods: {
+		async fetchStaff() {
+			const res = await fetch(process.env.VUE_APP_API_URL);
+			const data = await res.json();
+			return data;
+		},
+	},
+	async created() {
+		this.staffNames = await this.fetchStaff();
+	},
 };
 </script>
 
@@ -23,7 +43,6 @@ export default {
 }
 .container-center {
 	display: flex;
-	height: 100vh;
 	justify-content: center;
 	align-items: center;
 }
